@@ -33,6 +33,24 @@
                     android:overScrollMode="never"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_room_problems_others"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/default_margin"
+                    android:layout_marginTop="16dp"
+                    app:errorIconDrawable="@null"
+                    android:hint="Others">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_room_problems_others"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:inputType="text"
+                        android:imeOptions="actionDone"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnSend"
                     android:layout_width="match_parent"

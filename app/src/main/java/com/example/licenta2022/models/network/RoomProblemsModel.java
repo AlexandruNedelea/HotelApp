@@ -1,5 +1,7 @@
 package com.example.licenta2022.models.network;
 
+import com.example.licenta2022.helpers.DateTimeHelper;
+
 public class RoomProblemsModel {
     private String id;
     private String name;
@@ -8,9 +10,10 @@ public class RoomProblemsModel {
     public RoomProblemsModel() {
     }
 
-    public RoomProblemsModel(String id, String name, String date) {
+    public RoomProblemsModel(String id, String name) {
         this.id = id;
         this.name = name;
+        date = DateTimeHelper.getInstance().getCurrentDateTimeInString();
     }
 
     public String getId() {
