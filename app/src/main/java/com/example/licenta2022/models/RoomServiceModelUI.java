@@ -4,6 +4,7 @@ import androidx.databinding.Bindable;
 
 import com.example.licenta2022.BR;
 import com.example.licenta2022.enums.ListItemGenericType;
+import com.example.licenta2022.interfaces.RoomServiceQuantityListener;
 import com.example.licenta2022.models.network.RoomServiceModel;
 
 public class RoomServiceModelUI extends ListItemBaseModelUI {
@@ -15,8 +16,9 @@ public class RoomServiceModelUI extends ListItemBaseModelUI {
     private String description;
     private int quantity;
     private boolean selected;
+    private RoomServiceQuantityListener roomServiceQuantityListener;
 
-    public RoomServiceModelUI(int type, int id, String foodname, int price, String amount, String description) {
+    public RoomServiceModelUI(int type, int id, String foodname, int price, String amount, String description, RoomServiceQuantityListener roomServiceQuantityListener) {
         super(type);
         this.id = id;
         this.foodname = foodname;
@@ -24,6 +26,7 @@ public class RoomServiceModelUI extends ListItemBaseModelUI {
         this.amount = amount;
         //this.allergens = allergens;
         this.description = description;
+        this.roomServiceQuantityListener = roomServiceQuantityListener;
     }
 
     public RoomServiceModelUI(RoomServiceModel serverModel) {
@@ -99,12 +102,18 @@ public class RoomServiceModelUI extends ListItemBaseModelUI {
 
     public void increaseQuantity() {
         quantity++;
+        if (roomServiceQuantityListener != null) {
+            roomServiceQuantityListener.quantityIncreased(price);
+        }
         notifyPropertyChanged(BR.quantity);
     }
 
     public void decreaseQuantity() {
         if (quantity <= 0) {
             return;
+        }
+        if (roomServiceQuantityListener != null) {
+            roomServiceQuantityListener.quantityDecreased(price);
         }
         quantity--;
         notifyPropertyChanged(BR.quantity);

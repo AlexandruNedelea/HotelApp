@@ -4,13 +4,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+        <data>
+                <variable
+                    name="totalAmount"
+                    type="String" />
+        </data>
+
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fillViewport="true"
             android:overScrollMode="never">
 
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginHorizontal="16dp"
@@ -23,15 +29,36 @@
                             android:overScrollMode="never"
                             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_room_service_total_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/rv_row_room"
+                            android:layout_marginTop="20dp"
+                            android:text="Total:"
+                            android:textSize="20sp" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_room_service_total"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/rv_row_room"
+                            android:layout_toEndOf="@+id/tv_room_service_total_text"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginTop="20dp"
+                            android:textSize="20sp"
+                            android:text="@{totalAmount}"/>
+
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btn_room_service_order"
                             android:layout_width="match_parent"
                             android:layout_height="60dp"
                             android:layout_marginVertical="24dp"
+                            android:layout_below="@+id/tv_room_service_total_text"
                             android:textAllCaps="false"
                             app:cornerRadius="20dp"
                             android:backgroundTint="@color/primary_button_color"
                             android:text="Order room service"/>
-                </LinearLayout>
+                </RelativeLayout>
         </androidx.core.widget.NestedScrollView>
 </layout>
